@@ -2,9 +2,13 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookCopieController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BookStatusController;
-
+use App\Http\Controllers\LibrarianController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Models\Author;
 use Illuminate\Support\Facades\Route;
 
@@ -111,7 +115,19 @@ Route::get('/wherenull', function () {
 
 });
 
+//--------------- Authors ---------------------------
 
+Route::group(
+    [
+    'prefix' => 'authors',
+    'controller' => AuthorController::class
+    ], 
+    function () {
+        Route::post('insertauthor','create');
+        //Route::put('updategenre/{id}','updateGenre');
+        //Route::put('updatebook/{id}', 'update')->name('updatebook');
+
+});
 
 //--------------- Books ---------------------------
 Route::group(
@@ -134,14 +150,13 @@ Route::group(
     ], 
     function () {
         Route::get('request','all')->name('request');
-        Route::post('insert', 'create')->name('insert');
+        Route::post('insertgenre', 'create')->name('insert');
         Route::put('update/{id}', 'update')->name('update');
        // Route::post('delete', 'delete')->name('delete');
 
 });
 
 //--------------- BookStatus ---------------------------
-
 Route::group(
     [
     'prefix' => 'status',
@@ -153,9 +168,71 @@ Route::group(
 });
 
 
+//--------------- BookStatus ---------------------------
+Route::group(
+    [
+    'prefix' => 'copie',
+    'controller' => BookCopieController::class
+    ], 
+    function () {
+        Route::get('allcopie','all')->name('allcopie');
+        Route::post('insertcopie', 'create')->name('insertcopie');
+        Route::put('updatecopie/{id}', 'update')->name('updatecopie');
+        
+});
 
 
+//--------------- Role ---------------------------
+Route::group(
+    [
+    'prefix' => 'role',
+    'controller' => RoleController::class
+    ], 
+    function () {
+        Route::get('allrole','all')->name('allrole');
+        Route::post('insertrole', 'create')->name('insertrole');
+        Route::put('updaterole/{id}', 'update')->name('updaterole');
+        
+});
 
+//--------------- Users ---------------------------
+Route::group(
+    [
+    'prefix' => 'user',
+    'controller' => UserController::class
+    ], 
+    function () {
+        Route::get('alluser','all')->name('alluser');
+        Route::post('insertuser', 'create')->name('insertuser');
+        Route::put('updateuser/{id}', 'update')->name('updateuser');
+        
+});
+
+//--------------- Librarian ---------------------------
+Route::group(
+    [
+    'prefix' => 'librarian',
+    'controller' => LibrarianController::class
+    ], 
+    function () {
+        Route::get('alllibra','all')->name('alllibra');
+        Route::post('insertlibra', 'create')->name('insertLibra');
+        Route::put('updatelibra/{id}', 'update')->name('updatelibra');
+        
+});
+
+//--------------- Loan ---------------------------
+Route::group(
+    [
+    'prefix' => 'loan',
+    'controller' => LoanController::class
+    ], 
+    function () {
+        Route::get('allloans','all')->name('allloans');
+        Route::post('insertloan', 'create')->name('insertloan');
+        Route::put('updateloan/{id}', 'update')->name('updateloan');
+        
+});
 
 
 

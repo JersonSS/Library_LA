@@ -24,7 +24,7 @@ class Librarian extends Model
 
     public function loan(){
 
-        return $this->hasMany(Role::class);
+        return $this->hasMany(Loan::class);
 
     }
 

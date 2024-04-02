@@ -18,7 +18,6 @@ class User extends Authenticatable //nombre del modelo en singular, evita mas co
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
         'name',
         'last_name',
         'age',
@@ -31,9 +30,6 @@ class User extends Authenticatable //nombre del modelo en singular, evita mas co
         return $this->hasMany(Loan::class);
 
     }
-
-
-
 
     /**
      * The attributes that should be hidden for serialization.

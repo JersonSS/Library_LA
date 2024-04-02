@@ -18,6 +18,13 @@ public function create(Request $request){
     ]);
     $book->genres()->attach($request->genres); 
 
+   /* EJEMPLO INSERT
+   {
+        "title": "El túnel",
+        "author_id": 8,
+        "genres" :[3]
+    } */
+    
 }
 
 

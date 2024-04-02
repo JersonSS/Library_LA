@@ -9,7 +9,7 @@ class BookStatus extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'status'
+        'name'
     ];
 
 
@@ -17,3 +17,5 @@ class BookStatus extends Model
         return $this->hasMany(BookCopie::class);
     }
 }
+
+
