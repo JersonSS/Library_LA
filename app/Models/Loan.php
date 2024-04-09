@@ -4,22 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Loan extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
-        'books_copies_id',
+        'book_copies_id',
         'user_id',
         'librarian_id',
-        'loan_date_at',
-        'return_date_at'
+        'loan_at',
+        'return_at'
     ];
 
 
 
-public function copies(){
+public function bookCopie(){
         return $this->belongsTo(BookCopie::class);
     }
 

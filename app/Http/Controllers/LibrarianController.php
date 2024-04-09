@@ -14,7 +14,7 @@ class LibrarianController extends Controller
     public function create(Request $request){
 
         Librarian::create([  
-            'librarian_name' => $request->librarian_name,
+            'name' => $request->librarian_name,
             'role_id' => $request->role_id
         ]); 
     }
@@ -22,7 +22,7 @@ class LibrarianController extends Controller
     public function update(Request $request, $id){
         $role = Librarian::find($id);
         $role->update([
-            'librarian_name' => $request->input('librarian_name'),
+            'name' => $request->input('name'),
             'role_id' => $request->input('role_id')
         ]);
     

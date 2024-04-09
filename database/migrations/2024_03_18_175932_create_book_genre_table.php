@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('book_id')->references('id')->on('books');
             $table->foreign('genre_id')->references('id')->on('genres');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -136,9 +136,11 @@ Route::group(
     'controller' => BookController::class
     ], 
     function () {
+        Route::get('allbook','all')->name('allbook');
         Route::post('insertbook','create');
         Route::put('updategenre/{id}','updateGenre');
         Route::put('updatebook/{id}', 'update')->name('updatebook');
+        Route::get('allbookgenre','getBooksWithGenres')->name('allbookgenre');
 
 });
 
@@ -231,9 +233,14 @@ Route::group(
         Route::get('allloans','all')->name('allloans');
         Route::post('insertloan', 'create')->name('insertloan');
         Route::put('updateloan/{id}', 'update')->name('updateloan');
+        Route::post('loanstatus', 'newLoanStatus')->name('loanstatus');
+        Route::delete('loandelete/{id}', 'deleteLoan')->name('loandelete');
+        
+        Route::get('/loans', 'index')->name('loans');
+
+
         
 });
-
 
 
 

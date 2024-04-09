@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('book_id')->constrained('books');
             $table->foreignId('status_id')->constrained('book_statuses');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

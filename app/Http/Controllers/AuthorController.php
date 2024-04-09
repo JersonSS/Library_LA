@@ -18,16 +18,7 @@ class AuthorController extends Controller
       public function all(){
 
         return Author::all();
-        //return $authors->find(1);
-    }
-/*  
-    public function update($id){
-        Author::find($id);
 
-        $id->update([
-            'name' => $request->input('name'),
-        ]);
-    
     }
-*/
+
 }

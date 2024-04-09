@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            //foreign key(author_id)
             $table->foreignId('author_id')->constrained('authors'); //clave foranea de la tabla de authors
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

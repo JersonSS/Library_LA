@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('books_copies_id')->constrained('book_copies');
+            $table->foreignId('book_copies_id')->constrained('book_copies');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('librarian_id')->constrained('librarians');
-            $table->date('loan_date_at');
-            $table->date('return_date_at');
+            $table->timestamp('loan_at');
+            $table->timestamp('return_at');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -14,14 +14,14 @@ class RoleController extends Controller
     public function create(Request $request){
 
         Role::create([  
-            'role_name' => $request->role_name,
+            'name' => $request->name,
         ]); 
     }
 
     public function update(Request $request, $id){
         $role = Role::find($id);
         $role->update([
-            'role_name' => $request->input('role_name'),
+            'name' => $request->input('name'),
 
         ]);
     
