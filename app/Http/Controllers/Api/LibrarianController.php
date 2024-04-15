@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Librarian;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,10 @@ class LibrarianController extends Controller
     }
     public function create(Request $request){
 
-        Librarian::create([  
+        Librarian::create([
             'name' => $request->librarian_name,
             'role_id' => $request->role_id
-        ]); 
+        ]);
     }
 
     public function update(Request $request, $id){
@@ -25,7 +26,7 @@ class LibrarianController extends Controller
             'name' => $request->input('name'),
             'role_id' => $request->input('role_id')
         ]);
-    
+
         return response()->json(['message' => 'El Usuario a sido actualizado correctamente'], 201);
     }
 }

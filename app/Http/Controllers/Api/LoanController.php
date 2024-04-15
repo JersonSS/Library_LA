@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\LoanCollection;
 use App\Models\BookCopie;
 use App\Models\BookStatus;
@@ -78,31 +79,32 @@ class LoanController extends Controller
 
     public function deleteLoan($id)
     {
-       
+
         $loan = Loan::findOrFail($id);// para encontrar el prestamo y dar el fallo asociado si no lo encuentra
-    
+
         // Tener la copia que esta relacion al prestamo
         $bookCopy = $loan->bookCopie;
-    
+
         // verificar la existencia del prestamo y la copia del libro
         if ($loan && $bookCopy) {
-           
+
             $loan->delete();
-    
-            //  Tener el estado a disponible 
+
+            //  Tener el estado a disponible
             $availableStatus = BookStatus::where('name', 'Disponible')->first();
-    
+
             // Cambiar el estado de la copia de libro a "Disponible"
             if ($availableStatus) {
                 $bookCopy->status_id = $availableStatus->id;
                 //guardar el cambio entre las tablas
-                $bookCopy->save(); 
-    
+                $bookCopy->save();
+
                 return response()->json(['message' => 'Préstamo eliminado y estado de libro actualizado'], 200);
             }
         }
-    
+
         return response()->json(['message' => 'No se pudo encontrar el préstamo o la copia de libro'], 404);
     }
-    
+
+
 }

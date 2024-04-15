@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\BookCopie;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,10 @@ class BookCopieController extends Controller
     }
     public function create(Request $request){
 
-        BookCopie::create([  
+        BookCopie::create([
             'book_id' => $request->book_id,
             'status_id' => $request->status_id
-        ]); 
+        ]);
     }
 
     public function update(Request $request, $id){
@@ -25,7 +26,7 @@ class BookCopieController extends Controller
             'book_id' => $request->input('book_id'),
             'status_id' => $request->input('status_id'),
         ]);
-    
+
         return response()->json(['message' => 'La copia del Libro a sido actualizado correctamente'], 201);
     }
 }

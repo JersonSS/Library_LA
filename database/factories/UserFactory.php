@@ -24,9 +24,9 @@ class UserFactory extends Factory
             'last_name' => fake()->Unique()->lastName(),
             'age' => fake()->numberBetween(25,60),
             'email' => fake()->unique()->safeEmail(), // crear correos aletorios
-            //'email_verified_at' => now(),
-            'password' => Hash::make('1234'), 
-            //'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'),
+            'remember_token' => Str::random(10),
         ];
     }
 

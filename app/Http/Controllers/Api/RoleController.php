@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class RoleController extends Controller
     }
     public function create(Request $request){
 
-        Role::create([  
+        Role::create([
             'name' => $request->name,
-        ]); 
+        ]);
     }
 
     public function update(Request $request, $id){
@@ -24,7 +25,7 @@ class RoleController extends Controller
             'name' => $request->input('name'),
 
         ]);
-    
+
         return response()->json(['message' => 'El Rol a sido actualizado correctamente'], 201);
     }
 }

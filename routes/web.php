@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\BookCopieController;
-use App\Http\Controllers\GenreController;
-use App\Http\Controllers\BookStatusController;
-use App\Http\Controllers\LibrarianController;
-use App\Http\Controllers\LoanController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\AuthorController;
+use App\Http\Controllers\Api\BookController;
+use App\Http\Controllers\Api\BookCopieController;
+use App\Http\Controllers\Api\GenreController;
+use App\Http\Controllers\Api\BookStatusController;
+use App\Http\Controllers\Api\LibrarianController;
+use App\Http\Controllers\Api\LoanController;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
 use App\Models\Author;
 use Illuminate\Support\Facades\Route;
 
@@ -61,7 +61,7 @@ Route::post('/insertdate', function (Request $request) { // Request es un un obj
 
 // uso del update
 Route::put('/update/{id}', function (Request $request, $id) {
-    
+
     $author = Author::find($id);
 
     $author->update([
@@ -74,43 +74,43 @@ Route::put('/update/{id}', function (Request $request, $id) {
 //uso de where
 
 Route::get('/where', function () {
-    
+
     return Author::where('name', 'Mario Vargas Llosa')->get();
 
 });
 
 Route::get('/wherein', function () {
-    
+
     return Author::whereIn('id', [1,2,3])->get();
 
 });
 
 Route::get('/wherenotin', function () {
-    
+
     return Author::whereNotIn('id', [1,2,3])->get();
 
 });
 
 Route::get('/between', function () {
-    
+
     return Author::whereBetween('id', [3,5])->get();
 
 });
 
 Route::get('/wherenotnull', function () {
-    
+
     return Author::whereNotNull('name')->get();
 
 });
 
 Route::get('/wherenotnull', function () {
-    
+
     return Author::whereNotNull('name')->get();
 
 });
 
 Route::get('/wherenull', function () {
-    
+
     return Author::whereNull('name')->get();
 
 });
@@ -121,7 +121,7 @@ Route::group(
     [
     'prefix' => 'authors',
     'controller' => AuthorController::class
-    ], 
+    ],
     function () {
         Route::post('insertauthor','create');
         //Route::put('updategenre/{id}','updateGenre');
@@ -134,13 +134,21 @@ Route::group(
     [
     'prefix' => 'books',
     'controller' => BookController::class
-    ], 
+    ],
     function () {
         Route::get('allbook','all')->name('allbook');
         Route::post('insertbook','create');
         Route::put('updategenre/{id}','updateGenre');
         Route::put('updatebook/{id}', 'update')->name('updatebook');
         Route::get('allbookgenre','getBooksWithGenres')->name('allbookgenre');
+    //cuatro metodos doblemetodo
+        Route::post('firstCreate','firstCreate')->name('firstCreate');
+        Route::post('firstNew','firstNew')->name('firstNew');
+        Route::post('firstOr','firstOr')->name('firstOr');
+        Route::post('updateCreate','updateCreate')->name('updateCreate');
+        Route::delete('destroy/{book}', 'destroy')->name('destroy');
+        Route::put('restore/{id}', 'restore')->name('restore'); //no probado aun
+
 
 });
 
@@ -149,7 +157,7 @@ Route::group(
     [
     'prefix' => 'genres',
     'controller' => GenreController::class
-    ], 
+    ],
     function () {
         Route::get('request','all')->name('request');
         Route::post('insertgenre', 'create')->name('insert');
@@ -163,7 +171,7 @@ Route::group(
     [
     'prefix' => 'status',
     'controller' => BookStatusController::class
-    ], 
+    ],
     function () {
         Route::get('allstatus','all')->name('allstatus');
         Route::post('insertstatus', 'create')->name('insertstatus');
@@ -175,12 +183,12 @@ Route::group(
     [
     'prefix' => 'copie',
     'controller' => BookCopieController::class
-    ], 
+    ],
     function () {
         Route::get('allcopie','all')->name('allcopie');
         Route::post('insertcopie', 'create')->name('insertcopie');
         Route::put('updatecopie/{id}', 'update')->name('updatecopie');
-        
+
 });
 
 
@@ -189,12 +197,12 @@ Route::group(
     [
     'prefix' => 'role',
     'controller' => RoleController::class
-    ], 
+    ],
     function () {
         Route::get('allrole','all')->name('allrole');
         Route::post('insertrole', 'create')->name('insertrole');
         Route::put('updaterole/{id}', 'update')->name('updaterole');
-        
+
 });
 
 //--------------- Users ---------------------------
@@ -202,12 +210,12 @@ Route::group(
     [
     'prefix' => 'user',
     'controller' => UserController::class
-    ], 
+    ],
     function () {
         Route::get('alluser','all')->name('alluser');
         Route::post('insertuser', 'create')->name('insertuser');
         Route::put('updateuser/{id}', 'update')->name('updateuser');
-        
+
 });
 
 //--------------- Librarian ---------------------------
@@ -215,12 +223,12 @@ Route::group(
     [
     'prefix' => 'librarian',
     'controller' => LibrarianController::class
-    ], 
+    ],
     function () {
         Route::get('alllibra','all')->name('alllibra');
         Route::post('insertlibra', 'create')->name('insertLibra');
         Route::put('updatelibra/{id}', 'update')->name('updatelibra');
-        
+
 });
 
 //--------------- Loan ---------------------------
@@ -228,18 +236,18 @@ Route::group(
     [
     'prefix' => 'loan',
     'controller' => LoanController::class
-    ], 
+    ],
     function () {
         Route::get('allloans','all')->name('allloans');
         Route::post('insertloan', 'create')->name('insertloan');
         Route::put('updateloan/{id}', 'update')->name('updateloan');
         Route::post('loanstatus', 'newLoanStatus')->name('loanstatus');
         Route::delete('loandelete/{id}', 'deleteLoan')->name('loandelete');
-        
+
         Route::get('/loans', 'index')->name('loans');
 
 
-        
+
 });
 
 

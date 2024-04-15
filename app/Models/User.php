@@ -50,8 +50,9 @@ class User extends Authenticatable //nombre del modelo en singular, evita mas co
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed'
     ];
 
 
-    
+
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\BookStatus;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class BookStatusController extends Controller
     }
     public function create(Request $request){
 
-        BookStatus::create([  
+        BookStatus::create([
             'name' => $request->name,
-        ]); 
+        ]);
     }
 }

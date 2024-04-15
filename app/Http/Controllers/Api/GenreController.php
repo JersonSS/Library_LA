@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Genre;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -26,7 +27,7 @@ class GenreController extends Controller
 
         $genre = Genre::find($id); //guardar consulta de busqueda o registro (se llama objeto)de id en una variable $genre
 
-        // despues con el objeto, se aplica un metodo update 
+        // despues con el objeto, se aplica un metodo update
         $genre->update([
             'name' => $request->input('name'),
         ]);

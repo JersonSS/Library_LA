@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\BookController;
+use App\Http\Controllers\Api\LoanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::group(
+    [
+    'prefix' => 'loan',
+    'controller' => LoanController::class,
+    'middleware' => 'auth:sanctum'
+    ],
+    function () {
+        Route::get('AllLoans','all')->name('AllLoans');
+
+
+});
+
+Route::group(
+    [
+    'prefix' => 'books',
+    'controller' => BookController::class
+    ],
+    function () {
+
+        //Route::post('first_create','firstCreate')->name('first_create');
+
 });
