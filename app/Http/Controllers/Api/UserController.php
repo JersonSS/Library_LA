@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
+
+use Spatie\Permission\Models\Permission;
+
+
 class UserController extends Controller
 {
     public function all(){
@@ -30,9 +35,13 @@ class UserController extends Controller
             'last_name' => $request->input('last_name'),
             'age' => $request->input('age'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
+
         ]);
+        $role->assignRole('Admin');
 
         return response()->json(['message' => 'El Usuario a sido actualizado correctamente'], 201);
     }
 }
+
+

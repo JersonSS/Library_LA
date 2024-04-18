@@ -128,16 +128,20 @@ Route::group(
         //Route::put('updatebook/{id}', 'update')->name('updatebook');
 
 });
+//asignar a un usuario a un rol y un metodo--
+//pedir perimiso aun usario al tenr un metodo,
+// un usuario que no tenga rol asignifa que le salga error
 
 //--------------- Books ---------------------------
+/*
 Route::group(
     [
     'prefix' => 'books',
     'controller' => BookController::class
     ],
     function () {
-        Route::get('allbook','all')->name('allbook');
-        Route::post('insertbook','create');
+        Route::get('allbook','all')->name('allbook');//
+        Route::post('insertbook','create')->name('inserbook');
         Route::put('updategenre/{id}','updateGenre');
         Route::put('updatebook/{id}', 'update')->name('updatebook');
         Route::get('allbookgenre','getBooksWithGenres')->name('allbookgenre');
@@ -151,7 +155,7 @@ Route::group(
 
 
 });
-
+*/
 //--------------- Genre ---------------------------
  Route::group(
     [
@@ -193,7 +197,7 @@ Route::group(
 
 
 //--------------- Role ---------------------------
-Route::group(
+/*Route::group(
     [
     'prefix' => 'role',
     'controller' => RoleController::class
@@ -204,7 +208,7 @@ Route::group(
         Route::put('updaterole/{id}', 'update')->name('updaterole');
 
 });
-
+*/
 //--------------- Users ---------------------------
 Route::group(
     [

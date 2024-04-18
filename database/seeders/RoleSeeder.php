@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+use Spatie\Permission\Models\Role;
+
 
 class RoleSeeder extends Seeder
 {
@@ -13,17 +15,14 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = [
-            ['name'=>'Bibliotecario'],
-            ['name'=>'Bibliotecario Asistente'],
-            ['name'=>'Bibliotecario en Prácticas']
-        ];
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'Member']);
+        Role::create(['name' => 'administration']);
 
-        foreach($roles as $role){
+        // todavia no seed
+        Role::create(['name'=> 'Librarian']);
+        Role::create(['name'=> 'Assistant Librarian']);
 
-            Role::create([
-                'name'=> $role['name'],
-            ]);
-        }
+
     }
 }

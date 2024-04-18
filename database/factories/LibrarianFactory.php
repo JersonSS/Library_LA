@@ -19,10 +19,10 @@ class LibrarianFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'role_id' => function () {    
+            /*'role_id' => function () {
                 $role = Role::inRandomOrder()->first();// Obtener un Rol existente aleatoriamente
                 return $role->id;
-            },
+            },*/
         ];
     }
 }

@@ -18,10 +18,11 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class,
             UserSeeder::class,
             RoleSeeder::class,
+            PermissionsSeeder::class,
             BookSeeder::class,
             BookCopieSeeder::class,
             LibrarianSeeder::class,
-            LoanSeeder::class            
+            LoanSeeder::class
         ]);
     }
 }

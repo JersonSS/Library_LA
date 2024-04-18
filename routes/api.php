@@ -33,13 +33,16 @@ Route::group(
 
 });
 
+
+
 Route::group(
     [
     'prefix' => 'books',
-    'controller' => BookController::class
+    'controller' => BookController::class,
+    'middleware' => 'auth:sanctum'
     ],
     function () {
+        Route::get('allbook','all')->name('allbook');
 
-        //Route::post('first_create','firstCreate')->name('first_create');
 
 });

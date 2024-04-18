@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('librarians', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('role_id')->constrained('roles');
+            //$table->foreignId('role_id')->constrained('roles');
             $table->timestamps();
             $table->softDeletes();
         });

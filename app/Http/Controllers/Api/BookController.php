@@ -14,8 +14,12 @@ class BookController extends Controller
     public function __construct(
 
         private BookServices $bookServices
+
+
     ){
         $this->bookServices = $bookServices;
+        $this->middleware('can:allbook')->only('all');
+
     }
 
     public function all()

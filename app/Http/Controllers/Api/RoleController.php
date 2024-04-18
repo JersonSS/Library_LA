@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -29,3 +29,4 @@ class RoleController extends Controller
         return response()->json(['message' => 'El Rol a sido actualizado correctamente'], 201);
     }
 }
+*/
