@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\RoleEnum;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -30,6 +32,13 @@ class UserFactory extends Factory
         ];
     }
 
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            $randomRole = RoleEnum::cases()[array_rand(RoleEnum::cases())];
+            $user->assignRole($randomRole);
+        });
+    }
     /**
      * Indicate that the model's email address should be unverified.
      *

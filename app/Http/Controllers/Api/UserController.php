@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,8 +30,8 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id){
-        $role = User::find($id);
-        $role->update([
+        $user = User::find($id);
+        $user->update([
             'name' => $request->input('name'),
             'last_name' => $request->input('last_name'),
             'age' => $request->input('age'),
@@ -38,7 +39,7 @@ class UserController extends Controller
             'password' => Hash::make($request->input('password')),
 
         ]);
-        $role->assignRole('Admin');
+        $user->assignRole(RoleEnum::ADMIN);
 
         return response()->json(['message' => 'El Usuario a sido actualizado correctamente'], 201);
     }

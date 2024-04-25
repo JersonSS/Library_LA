@@ -12,17 +12,17 @@ class Librarian extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        
+
         'name',
         'role_id'
 
-    ];  
+    ];
 
-    public function role(){
+   /* public function role(){
 
         return $this->belongsTo(Role::class);
 
-    }
+    }*/
 
     public function loan(){
 

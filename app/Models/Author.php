@@ -13,12 +13,12 @@ class Author extends Model
 
     protected $fillable = [
         'name',
-        
+
     ];
 
     public function books()
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class); //relacion uno a muchos
     }
-
+    // has one ->relacion uno a uno
 }

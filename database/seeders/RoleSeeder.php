@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +17,16 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+
+        foreach(RoleEnum::cases() as $role)
+        {
+
+            Role::create(['name' => $role]);
+
+        }
+
+
+        /*
         Role::create(['name' => 'Admin']);
         Role::create(['name' => 'Member']);
         Role::create(['name' => 'administration']);
@@ -22,7 +34,7 @@ class RoleSeeder extends Seeder
         // todavia no seed
         Role::create(['name'=> 'Librarian']);
         Role::create(['name'=> 'Assistant Librarian']);
-
+        */
 
     }
 }

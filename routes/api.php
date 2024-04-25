@@ -39,10 +39,11 @@ Route::group(
     [
     'prefix' => 'books',
     'controller' => BookController::class,
-    'middleware' => 'auth:sanctum'
+    'middleware' => 'auth:sanctum',
     ],
     function () {
-        Route::get('allbook','all')->name('allbook');
+        Route::get('allbook', [BookController::class, 'all'])->name('allbook');
+        Route::get('allbookgenre',[BookController::class, 'getBooksWithGenres'])->name('allbookgenre');
 
 
 });

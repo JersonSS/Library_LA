@@ -22,7 +22,7 @@ class Loan extends Model
 
 
 public function bookCopie(){
-        return $this->belongsTo(BookCopie::class);
+        return $this->belongsTo(BookCopie::class); // relacion de uno o muchos
     }
 
 public function user(){

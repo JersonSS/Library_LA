@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class LoanController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware('can:Loan.all');
+    }
     public function index()
     {
         return new LoanCollection(Loan::with(['user'])->get());
@@ -80,7 +85,7 @@ class LoanController extends Controller
     public function deleteLoan($id)
     {
 
-        $loan = Loan::findOrFail($id);// para encontrar el prestamo y dar el fallo asociado si no lo encuentra
+        $loan = Loan::findOrFail($id); // para encontrar el prestamo y dar el fallo asociado si no lo encuentra
 
         // Tener la copia que esta relacion al prestamo
         $bookCopy = $loan->bookCopie;
@@ -105,6 +110,4 @@ class LoanController extends Controller
 
         return response()->json(['message' => 'No se pudo encontrar el préstamo o la copia de libro'], 404);
     }
-
-
 }

@@ -12,11 +12,11 @@ class BookCopie extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        
+
         'book_id',
         'status_id'
 
-    ];  
+    ];
 
     public function status()
     {
@@ -30,6 +30,6 @@ class BookCopie extends Model
 
     public function loan()
     {
-        return $this->belongsToMany(Loan::class);
+        return $this->belongsToMany(Loan::class);//mucho muchos
     }
 }

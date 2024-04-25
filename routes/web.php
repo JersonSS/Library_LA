@@ -30,7 +30,7 @@ Route::get('/prueba', function () {
     return Author::all();
 });
 
-Route::get('/test', [AuthorController::class, 'index']);
+Route::get('/test/{user}', [AuthorController::class, 'test']);
 
 Route::get('/all',[AuthorController::class,'all']);
 
@@ -253,6 +253,8 @@ Route::group(
 
 
 });
+
+
 
 
 

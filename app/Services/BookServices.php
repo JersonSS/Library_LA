@@ -10,7 +10,6 @@ class BookServices
     public function bookInfo(){
 
         $books = Book::with(['author', 'genres'])->get();
-
         return $books;
     }
 

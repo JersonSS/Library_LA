@@ -16,10 +16,10 @@ class BookController extends Controller
         private BookServices $bookServices
 
 
-    ){
+    ) {
         $this->bookServices = $bookServices;
-        $this->middleware('can:allbook')->only('all');
 
+        $this->middleware('can:allbook');
     }
 
     public function all()
@@ -84,16 +84,15 @@ class BookController extends Controller
     {
         return Book::firstOrCreate(
             [
-                'title' => $request ->title,
-                'author_id' =>$request ->author_id
+                'title' => $request->title,
+                'author_id' => $request->author_id
             ],
 
             [
-                'title' => $request ->title,
-                'author_id' =>$request ->author_id
+                'title' => $request->title,
+                'author_id' => $request->author_id
             ]
         );
-
     }
 
 
@@ -102,72 +101,56 @@ class BookController extends Controller
     {
         $book = Book::firstOrNew(
             [
-                'title' => $request ->title,
-                'author_id' =>$request ->author_id
+                'title' => $request->title,
+                'author_id' => $request->author_id
             ],
 
             [
-                'title' => $request ->title,
-                'author_id' =>$request ->author_id
+                'title' => $request->title,
+                'author_id' => $request->author_id
             ]
         );
 
         $book->save();
-
     }
 
     public function firstOr(Request $request)
     {
-        return Book::where('title', $request->title)->where('author_id', $request->author_id)->firstOr(function () use ($request)
-        {
+        return Book::where('title', $request->title)->where('author_id', $request->author_id)->firstOr(function () use ($request) {
 
             return Book::create([
 
-                'title'=> $request ->title,
+                'title' => $request->title,
 
-                'author_id'=> $request ->author_id
+                'author_id' => $request->author_id
 
 
             ]);
-
-
         });
-
     }
 
     public function updateCreate(Request $request)
     {
         return Book::updateOrCreate(
             [
-                'title' => $request ->title,
+                'title' => $request->title,
                 //'author_id' =>$request ->author_id
             ],
 
             [
-                'title' => $request ->title,
-                'author_id' =>$request ->author_id
+                'title' => $request->title,
+                'author_id' => $request->author_id
             ]
         );
-
     }
 
     public function destroy(Book $book)
     {
         return Book::destroy($book->id);
-
-
     }
 
     public function restore(int $id)
     {
         return Book::onlyTrashed()->find($id)->restore();
-
-
     }
-
-
-
-
-
-
 }
