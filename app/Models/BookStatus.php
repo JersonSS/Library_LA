@@ -8,17 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookStatus extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name'
     ];
 
+    /**
+     * @relation
+     * * HasMany: uno a muchos
+     */
 
-    public function book_copies(){
+    public function book_copies()
+    {
         return $this->hasMany(BookCopie::class); //uno a muchos
     }
 }
-
-

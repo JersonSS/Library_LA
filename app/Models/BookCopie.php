@@ -12,10 +12,8 @@ class BookCopie extends Model
     use SoftDeletes;
 
     protected $fillable = [
-
         'book_id',
         'status_id'
-
     ];
 
     public function status()
@@ -28,8 +26,12 @@ class BookCopie extends Model
         return $this->belongsTo(Book::class);
     }
 
+    /**
+     * @relation
+     * * belongsToMany: mucho a muchos
+     */
     public function loan()
     {
-        return $this->belongsToMany(Loan::class);//mucho muchos
+        return $this->belongsToMany(Loan::class);
     }
 }

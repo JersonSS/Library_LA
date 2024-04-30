@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BookController;
 use App\Http\Controllers\Api\LoanController;
+use App\Http\Controllers\Api\BookPhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,3 +48,39 @@ Route::group(
 
 
 });
+
+Route::group(
+    [
+
+    'controller' => BookPhotoController::class,
+    'as' =>'books.photo'
+    //'middleware' => 'auth:sanctum',
+    ],
+    function () {
+        Route::get('photos','index')->name('index');
+        Route::post('book/photos/file','storeFile')->name('store.file');
+        Route::post('photos/base64','storeBase64')->name('base64.store');
+
+});
+
+
+Route::post('/post', function () {
+    // Ruta de la imagen que deseas convertir a base64
+    $ruta_imagen = 'C:\Users\Jerson\Desktop\laravel\PROYECTOS - ED\LibraryLA\storage\app\public\images\Anotación 2024-04-25 115117.png';
+
+    // Verifica si la imagen existe
+    if (file_exists($ruta_imagen)) {
+        // Lee el contenido de la imagen en un string
+        $imagen_string = file_get_contents($ruta_imagen);
+
+        // Convierte el contenido de la imagen a base64
+        $imagen_base64 = base64_encode($imagen_string);
+
+        // Muestra o utiliza el resultado (en este caso, se muestra en la pantalla)
+        echo $imagen_base64;
+    } else {
+        echo 'La imagen no existe en la ruta especificada.';
+    }
+
+});
+

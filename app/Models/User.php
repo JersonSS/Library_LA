@@ -15,17 +15,12 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable //nombre del modelo en singular, evita mas code
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    use SoftDeletes;
-
-    use HasRoles;
-    use HasPermissions;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles, HasPermissions;
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array<int, string>
+     * @access table User: name ,last_name, age, email, password
      */
     protected $fillable = [
         'name',
@@ -35,10 +30,10 @@ class User extends Authenticatable //nombre del modelo en singular, evita mas co
         'password'
     ];
 
-    public function loan(){
+    public function loan()
+    {
 
         return $this->hasMany(Loan::class);
-
     }
 
     /**
@@ -60,7 +55,4 @@ class User extends Authenticatable //nombre del modelo en singular, evita mas co
         'email_verified_at' => 'datetime',
         'password' => 'hashed'
     ];
-
-
-
 }

@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Loan extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'book_copies_id',
@@ -19,18 +18,23 @@ class Loan extends Model
         'return_at'
     ];
 
-
-
-public function bookCopie(){
-        return $this->belongsTo(BookCopie::class); // relacion de uno o muchos
+    /**
+     *
+     * @relations:
+     * * belongsTo: Relación de uno a muchos, version contraria al hasMany.
+     *
+     */
+    public function bookCopie()
+    {
+        return $this->belongsTo(BookCopie::class);
     }
 
-public function user(){
-    return $this->belongsTo(User::class);
-
-}
-public function librarian(){
-    return $this->belongsTo(Librarian::class);
-}
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function librarian()
+    {
+        return $this->belongsTo(Librarian::class);
+    }
 }

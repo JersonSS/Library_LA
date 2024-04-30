@@ -8,20 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Genre extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        
         'name'
+    ];
 
-    ];  
-
-
-    public function books(){
-
+    public function books()
+    {
         return $this->belongsToMany(Book::class);
-
     }
-
 }
